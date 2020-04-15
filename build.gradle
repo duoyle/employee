@@ -1,0 +1,37 @@
+group 'pers.xxm'
+version '1.0-SNAPSHOT'
+
+subprojects {
+    group 'pers.xxm'
+    version '1.0-SNAPSHOT'
+
+    apply plugin: 'java'
+
+    sourceCompatibility = 1.8
+
+    repositories {
+        mavenLocal() // 指定本地仓库，就是使用maven的~/.m2/repository中的内容
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+        maven { url 'https://repository.cloudera.com/artifactory/cloudera-repos/' }
+        mavenCentral()  // 中央仓库位置
+    }
+
+    configurations {
+        compile.exclude group: 'org.slf4j', module: 'slf4j-log4j12'
+        compile.exclude group: 'ch.qos.logback'
+        
+    }
+
+    dependencies {
+
+        compile fileTree(dir: '/Users/Xuxm/MyCode/Java/library') // 导入本地的依赖包
+
+        testCompile group: 'junit', name: 'junit', version: '4.12'
+
+        compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.6.2'
+        compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.6.2'
+        compile group: 'org.apache.logging.log4j', name: 'log4j-slf4j-impl', version: '2.6.2'
+        compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
+
+    }
+}

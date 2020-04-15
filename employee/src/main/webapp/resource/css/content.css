@@ -1,0 +1,120 @@
+/******************** 整体结构样式 ********************/
+#content {
+    margin: 10px 10px 70px 10px;
+}
+
+/* 操作框，增删改查 */
+#operate-container {
+    height: 50px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#operate-container > div {
+    margin-left: 10px;
+    margin-top: 10px;
+    display: inline-block;
+}
+#insert-container {
+    float: left;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+#search-container {
+    float: right;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+#search-container > div {
+    float: left;
+    margin-left: 10px;
+    margin-top: 10px;
+    display: inline-block;
+}
+
+/* 具体元素样式 */
+#btn-insert {
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+#btn-insert, #btn-search {
+    width: 60px;
+    height: 26px;
+}
+
+
+.input-text {
+    width: 220px;
+    height: 26px;
+}
+.select-items {
+    height: 26px;
+    width: 100px;
+}
+
+.operate-label {
+    font-size: 15px;
+}
+
+#search-items {
+    margin-left: 10px;
+    margin-right: 30px;
+}
+
+/******************** 分页条样式 ********************/
+#page-size, #page-jump {
+    font-size: 14px;
+    margin-right: 20px;
+    margin-top: 5px;
+}
+
+#page-size {
+    float: left;
+}
+
+#page-number, #page-jump {
+    float: right;
+}
+
+#pageNumber {
+    width: 49px;
+    height: 26px;
+}
+
+#page-container > div {
+    display: inline-block;
+}
+
+.pagination {
+    margin-top: 0; /*这里设置外面的page-number起作用的是外层的page-container，所以只能设这个*/
+    margin-bottom: 0;
+}
+
+/******************** Table表格的样式 ********************/
+.check-column {
+    text-align: center;
+}
+.th-color {
+    background-color: #F5F5F5;
+}
+.tr-odd {
+    background-color: #F9F9F9;
+}
+.tr-even {
+    background-color: #F0F0F0;
+}
+.tr-hover {
+    background-color: #F0F5F5;
+}
+/*.table>tbody>tr:hover {  鼠标放上颜色改变
+    background-color: #7FB7D7;
+}*/
+.tr-selected {
+    background-color: #7FD7B7;
+}
+
+/* row-key的隐藏 */
+.table tr > .row-key {
+    display: none;
+}

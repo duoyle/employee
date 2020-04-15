@@ -1,0 +1,11 @@
+
+dependencies {
+    compile project(':common') // 多个要分先后添加，顺序很重要，相同的后面的覆盖前面的？
+
+    compile group: 'javax.servlet', name: 'javax.servlet-api', version: '3.1.0'
+
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.16.22'
+
+    compile 'commons-dbutils:commons-dbutils:1.7'
+    compile group: 'org.apache.commons', name: 'commons-dbcp2', version: '2.5.0'
+}

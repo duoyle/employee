@@ -1,0 +1,316 @@
+/* 以下实际使用若已初始化可删除 .lsm-sidebar height父级需逐级设置为100%*/
+body, html {
+    height: 100%;
+    background: #E2E2E2
+}
+
+body {
+    margin: 0;
+    padding: 0
+}
+
+body {
+    -webkit-text-size-adjust: 100%;
+}
+/* 以上实际使用若已初始化可删除 */
+
+/******************** 顶部菜单部分 ********************/
+.top-side-nav {
+    height: 51px;
+}
+.navbar-user, .navbar-form {
+    float: right;
+}
+
+/******************** 左侧导航部分 ********************/
+/* 带lsm-sidebar-show的用来点击展开后的选中（左侧蓝色竖条标记）的显示 */
+.left-side-menu li {
+    list-style: none
+}
+.left-side-menu a {
+    text-decoration: none;
+}
+.left-side-menu ul {
+    margin: 0;
+    padding: 0;
+}
+/* lsm-sidebar */
+.left-side-menu, .lsm-popup.lsm-sidebar ul li,
+.lsm-container.lsm-mini .lsm-sidebar > ul > li.lsm-sidebar-item > ul > li.lsm-sidebar-item > ul {
+    background: #272822;
+}
+
+.left-side-menu {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    height: calc(100% - 51px); /*calc(100%-50px)*/
+    width: 212px;
+}
+
+/* 隐藏伸缩按钮 */
+.lsm-expand-btn {
+    height: 60px;
+}
+
+.lsm-mini-btn {
+    float: right;
+    height: 60px;
+    width: 60px;
+}
+
+.lsm-mini-btn svg {
+    margin: -5px -5px -5px -7px;
+}
+
+.lsm-mini-btn input[type="checkbox"] {
+    display: none;
+}
+
+.lsm-mini-btn path {
+    fill: none;
+    stroke: #ffffff;
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    --length: 24;
+    --offset: -38;
+    stroke-dasharray: var(--length) var(--total-length);
+    stroke-dashoffset: var(--offset);
+    transition: all .8s cubic-bezier(.645, .045, .355, 1);
+}
+
+.lsm-mini-btn circle {
+    fill: #fff3;
+    opacity: 0;
+}
+
+/* 防止和bootstrap冲突（内部设置了全局label）添加，使用优先级控制，#id覆盖.class，.class覆盖div */
+.lsm-mini-btn > .lsm-mini-btn-label {
+    display: block;
+    max-width: none;
+    margin-bottom: 0;
+    font-weight: normal;
+}
+.lsm-mini-btn label:hover circle {
+    opacity: 1;
+}
+
+.lsm-mini-btn input:checked + svg .line--1, .lsm-mini-btn input:checked + svg .line--3 {
+    --length: 8.602325267;
+    --offset: -109.1770175568;
+}
+
+.lsm-mini-btn .line--1, .lsm-mini-btn .line--3 {
+    --total-length: 126.38166809082031;
+}
+
+.lsm-mini-btn .line--2 {
+    --total-length: 80;
+}
+
+/* 导航菜单 */
+.lsm-container {
+    height: calc(100% - 60px);
+    transition: all .3s;
+    z-index: 100
+}
+
+.lsm-container li > a.active {
+    background: #c55b03;
+    color: #fff;
+}
+
+.lsm-sidebar a {
+    display: block;
+    overflow: hidden;
+    padding-left: 20px;
+    line-height: 40px;
+    max-height: 40px;
+    color: #b2b8be;
+    transition: all .3s;
+}
+
+.lsm-container ul:first-child > li > a, .lsm-container ul:first-child > li > a span {
+    line-height: 55px;
+    max-height: 55px;
+}
+
+.lsm-sidebar a span {
+    margin-left: 30px;
+}
+
+.lsm-sidebar .lsm-sidebar-item .lsm-sidebar-item > ul > li a span {
+    margin-left: 60px;
+}
+
+.lsm-sidebar-item {
+    position: relative;
+}
+
+.lsm-sidebar-item.lsm-sidebar-show {
+    border-bottom: none;
+}
+
+.lsm-sidebar-item ul {
+    display: none;
+    background: rgba(0, 0, 0, .1);
+}
+
+.lsm-sidebar-item.lsm-sidebar-show ul {
+    display: block;
+}
+
+.lsm-sidebar-item > a:before { /* 左侧的选中是的蓝色标记 */
+    content: "";
+    position: absolute;
+    left: 0px;
+    width: 2px;
+    height: 40px;
+    background: #34A0CE;
+    opacity: 0;
+    transition: all .3s;
+}
+
+.lsm-container ul:first-child > li.lsm-sidebar-item > a:before {
+    height: 55px;
+}
+
+.lsm-sidebar .lsm-sidebar-icon {
+    font-size: 20px;
+    position: absolute;
+    margin-left: -1px;
+}
+
+.lsm-sidebar-more { /* 有子菜单时右边的箭头 */
+    float: right;
+    margin-right: 20px;
+    font-size: 12px;
+    transition: transform .3s;
+}
+
+.lsm-sidebar-show > a > i.my-icon.lsm-sidebar-more {
+    transform: rotate(90deg);
+}
+
+/* 导航右侧箭头 换用其他字体需要替换*/
+.lsm-sidebar-more::after {
+    content: "\e955";
+}
+
+.lsm-sidebar-show, .lsm-sidebar-item > a:hover {
+    color: #FFF;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.lsm-sidebar-show > a:before, .lsm-sidebar-item > a:hover:before {
+    opacity: 1;
+}
+
+.lsm-sidebar-item li > a:hover, .lsm-popup > div > ul > li > a:hover {
+    color: #FFF;
+    background: #6e809c;
+}
+
+/* 隐藏文字菜单后的样式 */
+.lsm-container.lsm-mini .lsm-sidebar .lsm-sidebar-icon {
+    /* margin-left:-2px; */
+}
+
+.left-side-menu.lsm-mini ul:first-child > li.lsm-sidebar-item > a span {
+    display: none;
+}
+
+.left-side-menu.lsm-mini ul:first-child > li.lsm-sidebar-item > a > i.lsm-sidebar-more {
+    margin-right: -20px;
+}
+
+.lsm-container.lsm-mini .lsm-sidebar > ul > li.lsm-sidebar-item > ul > li.lsm-sidebar-item > ul {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 180px;
+    width: 180px;
+    z-index: 99;
+    bottom: 0;
+    overflow: hidden;
+}
+
+.left-side-menu.lsm-mini ul:first-child > li > ul {
+    display: none;
+}
+
+/* 弹出式的菜单 */
+.lsm-popup div {
+    background: #05161f;
+}
+
+.lsm-popup {
+    display: block;
+    position: absolute;
+    border: 3px solid rgba(60, 71, 76, 0);
+}
+
+.lsm-popup > div > a > i.my-icon.lsm-sidebar-more {
+    transform: rotate(90deg);
+}
+
+.lsm-popup.second {
+    left: 60px;
+}
+
+.lsm-popup.third {
+    left: 243px;
+}
+
+.lsm-popup.third.lsm-sidebar > div > ul {
+    display: block;
+}
+
+.lsm-popup div {
+    border-radius: 5px;
+}
+
+.lsm-popup .lsm-sidebar-icon {
+    display: none;
+}
+
+.lsm-popup.lsm-sidebar a span {
+    margin-left: 0px;
+}
+
+.lsm-popup.lsm-sidebar > div > ul > li.lsm-sidebar-item > ul {
+    position: absolute;
+    top: 0px;
+    left: 180px;
+    width: 180px;
+    z-index: 99;
+}
+
+.lsm-popup.lsm-sidebar ul {
+    width: 180px;
+}
+
+.lsm-popup.lsm-sidebar ul li {
+    width: 180px;
+}
+
+.lsm-popup.lsm-sidebar ul li:last-child, .lsm-popup > div > ul > li:last-child > a {
+    border-radius: 0 0 5px 5px;
+}
+
+/******************** 右下内容部分 ********************/
+.right-side-content, .left-side-menu {
+    display: inline;
+}
+.right-side-content {
+    float: right;
+    width: calc(100% - 212px);
+    height: calc(100% - 51px);
+}
+/*正常后者覆盖前者，z-index只对设置了position为absolute，relative和fixed的起作用，值越大在最外层*/
+.left-side-menu {
+    float: left;
+}

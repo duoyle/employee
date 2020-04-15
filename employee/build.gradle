@@ -1,0 +1,11 @@
+
+apply plugin: 'war'
+
+dependencies {
+    compile project(':common')
+    compile project(':system') // system中的依赖会加进来，但compileOnly不会传递过来
+
+    compile group: 'commons-fileupload', name: 'commons-fileupload', version: '1.4'
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.16.22'
+    
+}

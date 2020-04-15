@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--日志级别：ALL < DEBUG < INFO < WARN < ERROR < FATAL < OFF。ALL输出所有，OFF都不输出，若定义INFO，大于其的都输出。-->
+<!--级别后面的是输出目的地，可以多个（级别只能一个吗？），这里是自定义名称，用于后面指定输出位置-->
+<Configuration>
+    <!--Properties中定义变量-->
+    <Properties>
+        <Property name="logLevel">INFO</Property>
+        <Property name="logPath">/Users/Xuxm/MyData/Logs</Property>
+        <Property name="logSize">128MB</Property>
+        <Property name="maxFiles">20</Property>
+    </Properties>
+    <!--FileAppender使用FileOutputStream，RandomAccessFileAppender使用RandomAccessFile输出，性能更好-->
+    <!--Rolling开头的表示可日志滚动，例如日志文件达到一定条件进行切分，也有对应RandomAccess和普通的-->
+    <Appenders>
+        <!--一般前面的Appender放Level低的，后面放高的，多个Appender会逐个进行匹配处理，Console表示ConsoleAppender，其他类同-->
+        <!--onMatch="ACCEPT" 表示匹配该级别及以上，处理后不再传给其他过滤器（同一个Appender内的）-->
+        <!--onMatch="DENY" 表示不匹配该级别及以上，拒绝后不再传给其他过滤器-->
+        <!--onMatch="NEUTRAL" 表示该级别及以上的，由下一个filter处理，如果当前是最后一个，则表示匹配该级别及以上-->
+        <!--onMismatch="ACCEPT" 表示匹配该级别以下，处理后不再传给其他过滤器-->
+        <!--onMismatch="NEUTRAL" 表示该级别及以下的，由下一个filter处理，如果当前是最后一个，则不匹配该级别以下的-->
+        <!--onMismatch="DENY" 表示不匹配该级别以下的，拒绝后不再传给其他过滤器-->
+        <Console name="console" target="SYSTEM_OUT">
+            <!--onMatch表示匹配层级及以上后的处理，默认NEUTRAL；onMismatch表示未匹配的处理，默认DENY；LEVEL默认WARN-->
+            <ThresholdFilter level="INFO" />
+            <PatternLayout pattern="[%-5p] %d{yyyy-MM-dd HH:mm:ss:SSS} - [%t] %l (%r): %m%xEx%n"/>
+        </Console>
+        <!--适合临时测试用，append设为false每次程序运行都会覆盖，测试时onMatch设为Accept会拦截处理-->
+        <RandomAccessFile name="logError" fileName="${logPath}/error.log" append="false" immediateFlush="true">
+            <ThresholdFilter level="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="[%-5p] %d{yyyy-MM-dd HH:mm:ss} - [%t] %l: %m%xEx%n"/>
+        </RandomAccessFile>
+        <RollingRandomAccessFile name="logWarnInfo" fileName="${logPath}/warn_info.log"
+                                 filePattern="${logPath}/$${date:yyyy-MM}/log.%d{yyyy-MM-dd HH:mm:ss}.%i.log.gz">
+            <PatternLayout pattern="[%-5p] %d{yyyy-MM-dd HH:mm:ss} - [%t] %l: %m%xEx%n"/>
+            <Filters>
+                <!--只存INFO信息的内容-->
+                <ThresholdFilter level="ERROR" onMatch="DENY" onMismatch="NEUTRAL"/>
+                <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY" />
+            </Filters>
+            <Policies>
+                <!--<CronTriggeringPolicy schedule="0 0 * * * ?"/>表示每小时归档一次-->
+                <!--程序启动时日志文件存在，则日志文件大于等于minSize字节数会将该日志文件归档，重新创建新的日志文件，minSize默认是1-->
+                <OnStartupTriggeringPolicy minSize="1"/>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="${logSize}"/>
+            </Policies>
+            <!--时间间隔触发，例如interval="4"4天滚动一次，这里不设置，使用文件大小触发，超过自动生成新文件-->
+
+            <!--max是归档最大文件数，默认7，滚动一次%i也会加1，超过max删除旧日志，fileName指定的是在写入文件，filePattern是归档文件-->
+            <!--DirectWriteRolloverStrategy不需要fileName，从写入开始就使用filePattern方式直接写入归档文件中，归档时再压缩-->
+            <DefaultRolloverStrategy max="${maxFiles}"/>
+        </RollingRandomAccessFile>
+    </Appenders>
+    <Loggers>
+        <!--name表示使用该Logger的包名或类名，内部配置使用的Appender，level设置过滤级别，additivity为false不进入Root，避免重复日志-->
+        <Logger name="pers.xxm.trouble.ExceptionHandler" additivity="false" level="info">
+            <AppenderRef ref="console"/>
+            <AppenderRef ref="logError"/>
+        </Logger>
+        <!--所有类都使用Root，也可以配置level-->
+        <Root level="info">
+            <AppenderRef ref="console"/>
+            <AppenderRef ref="logWarnInfo"/>
+        </Root>
+    </Loggers>
+</Configuration>

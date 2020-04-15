@@ -1,0 +1,4 @@
+rootProject.name = 'dongle'
+include 'common'
+include 'system'
+include 'employee'

@@ -1,0 +1,161 @@
+@font-face {
+    font-family: 'my-icon';
+    src: url('iconfont.eot');
+    src: url('iconfont.eot?#iefix') format('embedded-opentype'),
+    url('iconfont.woff') format('woff'),
+    url('iconfont.ttf') format('truetype'),
+    url('iconfont.svg#iconfont') format('svg');
+}
+
+.my-icon {
+    font-family: "my-icon", serif !important; /*serif表示如果字体找不到使用默认字体*/
+    font-size: 16px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/************************* data:application加入的 ***************************/
+.icon-system:before {
+    content: "\e62d";
+}
+
+.icon-user:before {
+    content: "\e6db";
+}
+
+.icon-rule:before {
+    content: "\e6dc";
+}
+
+.icon-record:before {
+    content: "\e6dd";
+}
+
+.icon-users:before {
+    content: "\e6de";
+}
+
+.icon-dept:before {
+    content: "\e6df";
+}
+
+.icon-down:before {
+    content: "\e94d";
+}
+
+.icon-left:before {
+    content: "\e952";
+}
+
+.icon-right:before {
+    content: "\e955";
+}
+
+.icon-up:before {
+    content: "\e959";
+}
+
+.iconxitong:before {
+    content: "\e617";
+}
+
+.icon-daoru:before {
+    content: "\e601";
+}
+
+.icon_huiyuanguanli:before {
+    content: "\e602";
+}
+
+.iconshouye:before {
+    content: "\e603";
+}
+
+.icontuichudenglu:before {
+    content: "\e605";
+}
+
+.iconwancheng:before {
+    content: "\e606";
+}
+
+.iconxinzeng:before {
+    content: "\e607";
+}
+
+.iconzhanghao:before {
+    content: "\e608";
+}
+
+.iconxinxifuwu:before {
+    content: "\e6da";
+}
+
+.iconlizhijiaojie:before {
+    content: "\e609";
+}
+
+.iconyuangongtiaodong:before {
+    content: "\e60c";
+}
+
+.iconjiaoseguanli:before {
+    content: "\e636";
+}
+
+.iconxinzengyonghu:before {
+    content: "\e634";
+}
+
+.iconzhuxiao:before {
+    content: "\e62a";
+}
+
+.iconxitongguanli-:before {
+    content: "\e618";
+}
+
+.iconicon_groupcustomer:before {
+    content: "\e655";
+}
+
+.iconduoxuan:before {
+    content: "\e60a";
+}
+
+.icondanxuan:before {
+    content: "\e60b";
+}
+
+.iconsousuo:before {
+    content: "\e60e";
+}
+
+.icontianjia:before {
+    content: "\e60f";
+}
+
+.iconGlobal:before {
+    content: "\e6b1";
+}
+
+.iconerweima-code-xian:before {
+    content: "\e8bb";
+}
+
+.iconerweima-scan--xian:before {
+    content: "\e8bd";
+}
+
+.iconfangdajingsuosou-xian:before {
+    content: "\e8d1";
+}
+
+.iconjiantou-left-xian:before {
+    content: "\e90d";
+}
+
+.iconjiantou-right-xian:before {
+    content: "\e918";
+}

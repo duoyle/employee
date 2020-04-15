@@ -1,0 +1,26 @@
+label.error { /*label中class为error的*/
+    color: red;
+    padding-top: 5px;
+}
+label.right { /*label中class为error的*/
+    color: green;
+    padding-top: 5px;
+}
+
+/*结果提示*/
+label#resultTip {
+    padding-top: 10px;
+}
+label.success {
+    color: green;
+}
+label.failure {
+    color: red;
+}
+
+.validate-failure .form-control {
+    background-color: #F9F9D9;
+}
+textarea {
+    resize: none;
+}
